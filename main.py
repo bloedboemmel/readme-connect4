@@ -76,6 +76,7 @@ def parse_issue(title):
 
 def main(issue, issue_author, repo_owner):
     action = parse_issue(issue.title)
+    print(action)
     Conn = connect4()
 
     with open('data/settings.yaml', 'r') as settings_file:
@@ -119,7 +120,7 @@ def main(issue, issue_author, repo_owner):
             issue.create_comment(settings['comments']['consecutive_moves'].format(author=issue_author))
             issue.edit(state='closed', labels=['Invalid'])
             return False, 'ERROR: Two moves in a row!'
-        move = issue
+        move = action[1]
         # Check if move is valid
         if move not in Valid_Moves:
             issue.create_comment(settings['comments']['invalid_move'].format(author=issue_author, move=action[1]))
