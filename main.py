@@ -138,7 +138,7 @@ def main(issue, issue_author, repo_owner):
         issue.create_comment(settings['comments']['successful_move'].format(author=issue_author, move=action[1]))
         issue.edit(state='closed', labels=issue_labels)
 
-        update_last_moves(action[1] + ': ' + issue_author)
+        update_last_moves(str(action[1]) + ': ' + issue_author)
         update_top_moves(issue_author)
 
         # Perform move
