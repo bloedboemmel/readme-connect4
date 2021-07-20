@@ -79,7 +79,7 @@ def generate_last_moves():
 
 
 def generate_moves_list(board):
-    moves = board.legal_moves
+    moves = board.valid_moves()
     # Create dictionary and fill it
 
 
