@@ -79,6 +79,7 @@ def generate_last_moves():
 
 
 def generate_moves_list(board):
+    return ''
     # Create dictionary and fill it
     moves = list(board.legal_moves)
     moves_dict = defaultdict(list)

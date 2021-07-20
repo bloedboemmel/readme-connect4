@@ -163,6 +163,7 @@ def main(issue, issue_author, repo_owner):
         # Write new board & list of movements
         file.write(readme.format(
             chess_board=markdown.board_to_markdown(Conn.grid),
+            moves_list=markdown.generate_moves_list(Conn.grid),
             turn=('red' if Conn.whosturn() == RED else 'yellow'),
             last_moves=last_moves,
             top_moves=markdown.generate_top_moves()))
