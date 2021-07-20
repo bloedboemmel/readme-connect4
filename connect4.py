@@ -38,7 +38,7 @@ class connect4():
         for row in self.grid:
             count = 0
             for col in row:
-                if col == color:
+                if col == self.plays:
                     count += 1
                 else:
                     count = 0
@@ -48,7 +48,7 @@ class connect4():
         for j in range(len(self.grid[0])):
             count = 0
             for i in range(len(self.grid)):
-                if self.grid[i][j] == color:
+                if self.grid[i][j] == self.plays:
                     count += 1
                 else:
                     count = 0
@@ -59,8 +59,8 @@ class connect4():
         saver = []
         for row in range(len(self.grid)):
             for col in range(len(self.grid[0])):
-                if self.grid[row][col] == color:
-                    if self.recur_checker(self.grid, True, row + 1, col - 1, color, 3) | self.recur_checker(self.grid, False, row + 1, col + 1, color, 3):
+                if self.grid[row][col] == self.plays:
+                    if self.recur_checker(self.grid, True, row + 1, col - 1, self.plays, 3) | self.recur_checker(self.grid, False, row + 1, col + 1, self.plays, 3):
                         print('True3')
                         return True
 
