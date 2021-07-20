@@ -11,20 +11,14 @@ with open('data/settings.yaml', 'r') as settings_file:
 
 
 def create_link(text, link):
-    return "[" + text + "](" + link + ")"
+    return "[" + str(text) + "](" + link + ")"
 
 
 def create_issue_link(source):
-    ret = []
+    ret = "https://github.com/bloedboemmel/connect4-private/issues/new?title=Connect4%3A+Put+"
 
-    issue_link = settings['issues']['link'].format(
-        repo=os.environ["GITHUB_REPOSITORY"],
-        params=urlencode('PUT', safe="{}"))
-
-
-    ret.append(create_link(source, issue_link.format(source)))
-
-    return ", ".join(ret)
+    ret += str(source) + "&body=Please+do+not+change+the+title.+Just+click+%22Submit+new+issue%22.+You+don%27t+need+to+do+anything+else+%3AD"
+    return create_link(source, ret)
 
 
 def generate_top_moves():
