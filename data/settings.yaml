@@ -14,7 +14,10 @@ comments:
   # This message is displayed if the board is in an invalid state. This shouldn't be shown unless something
   # has gone terribly wrong
   invalid_board: "{author} Sorry, I can't perform the specified move. The board is invalid!"
-  
+
+  no_space: |-
+      Wow, apparently everybody was too good. There's no space left. Please start a new game! Thank's to all {num_players} players:
+      {players}. You made {num_moves} moves before the field was full!
   # Message to be displayed when a player plays an invalid move
   invalid_move: |-
       {author} Whaaaat? The move `{move}` is invalid!

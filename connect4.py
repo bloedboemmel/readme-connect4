@@ -1,37 +1,44 @@
+import os
 import pickle
 from datetime import datetime
 
 
 class connect4():
     def __init__(self):
-        self.grid, self.is_finished, self.plays = self.load_lastgame()
-        self.valid = range(len(self.grid))
-
-    def save_currentgame(self):
-        pickle.dump({'grid': self.grid, 'is_finished': self.is_finished, 'plays': self.plays},
-                    open("games/current.p", "wb"))
-
-    def load_lastgame(self):
         try:
             game = pickle.load(open("games/current.p", "rb"))
-            grid = game['grid']
-            is_finished = game['is_finished']
-            plays = game['plays']
-            return grid, is_finished, plays
+            self.grid = game['grid']
+            self.is_finished = game['is_finished']
+            self.plays = game['plays']
+            self.player = game['player']
+            self.rounds = game['rounds']
+            self.ActiveGame = game['ActiveGame']
+            self.valid_moves()
+
         except:
-            return self.create_newgame()
+            self.create_newgame()
+            self.valid = range(len(self.grid))
+
+    def save_currentgame(self):
+        pickle.dump({'grid': self.grid, 'is_finished': self.is_finished, 'plays': self.plays, 'player': self.player,
+                     'rounds': self.rounds}, open("games/current.p", "wb"))
 
     def wongame(self):
 
-        pickle.dump({'grid': self.grid, 'is_finished': self.is_finished, 'plays': self.plays},
+        pickle.dump({'grid': self.grid, 'is_finished': self.is_finished, 'plays': self.plays, 'player': self.player,
+                     'rounds': self.rounds},
                     open("games/" + datetime.now().strftime("%m_%d_%Y-%H_%M_%S") + ".p",
                          "wb"))
-        return self.create_newgame()
+
+        os.remove("games/current.p")
 
     def create_newgame(self):
         self.grid = [[0 for col in range(7)] for row in range(6)]
         self.is_finished = False
         self.plays = 2
+        self.player = []
+        self.rounds = 0
+        self.ActiveGame = True
         self.save_currentgame()
 
     def iswonornot(self):
@@ -56,11 +63,12 @@ class connect4():
                     print('True2')
                     return True
 
-        saver = []
+
         for row in range(len(self.grid)):
             for col in range(len(self.grid[0])):
                 if self.grid[row][col] == self.plays:
-                    if self.recur_checker(self.grid, True, row + 1, col - 1, self.plays, 3) | self.recur_checker(self.grid, False, row + 1, col + 1, self.plays, 3):
+                    if self.recur_checker(self.grid, True, row + 1, col - 1, self.plays, 3) | self.recur_checker(
+                            self.grid, False, row + 1, col + 1, self.plays, 3):
                         print('True3')
                         return True
 
@@ -89,14 +97,14 @@ class connect4():
         return False
 
     def whosturn(self):
-        self.load_lastgame()
+
         Can_Play = []
         for i in range(len(self.grid[0])):
             if self.grid[-1][i] == 0:
                 Can_Play.append(i + 1)
         return self.plays, Can_Play
 
-    def move(self,x):
+    def move(self, x, curr_player):
         x -= 1
         if (x >= len(self.grid[0])) | (x < 0):
             return self.whosturn()
@@ -111,17 +119,23 @@ class connect4():
         if not Found:
             self.plays += 1
             print("Can't put it there")
+            return self.plays, self.valid_moves(), 0
 
         self.plays = (self.plays % 2) + 1
+        if curr_player not in self.player:
+            self.player.append(curr_player)
 
+        self.rounds +=1
         if self.iswonornot():
             for row in reversed(self.grid):
                 print(row)
             self.wongame()
+            return self.plays, self.valid_moves(), 1
         elif not self.has_space_left():
             for row in reversed(self.grid):
                 print(row)
             self.wongame()
+            return self.plays, self.valid_moves(), 2
 
         else:
             self.save_currentgame()
@@ -129,7 +143,7 @@ class connect4():
         for row in reversed(self.grid):
             print(row)
 
-        return self.plays, self.valid_moves()
+        return self.plays, self.valid_moves(), 0
 
     def valid_moves(self):
         valid = []
@@ -138,6 +152,7 @@ class connect4():
                 valid.append(i + 1)
         self.valid = valid
         return valid
+
 
 if __name__ == '__main__':
     Conn = connect4()

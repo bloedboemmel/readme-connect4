@@ -83,7 +83,7 @@ def main(issue, issue_author, repo_owner):
         settings = yaml.load(settings_file, Loader=yaml.FullLoader)
 
     if action[0] == Action.NEW_GAME:
-        if os.path.exists('games/current.p') and issue_author != repo_owner:
+        if not os.path.exists('games/current.p') and issue_author != repo_owner:
             issue.create_comment(settings['comments']['invalid_new_game'].format(author=issue_author))
             issue.edit(state='closed')
             return False, 'ERROR: A current game is in progress. Only the repo owner can start a new game'
@@ -106,7 +106,7 @@ def main(issue, issue_author, repo_owner):
             return False, 'ERROR: There is no game in progress! Start a new game first'
 
         # Load game from "games/current.pgn"
-        Conn = connect4()
+
         Valid_Moves = Conn.valid_moves()
         with open('data/last_moves.txt') as moves:
             line = moves.readline()
@@ -133,16 +133,32 @@ def main(issue, issue_author, repo_owner):
             issue.edit(state='closed', labels=['Invalid'])
             return False, 'ERROR: Board is invalid!'
 
-
-        issue_labels = ['Red' if RED == Conn.whosturn() else 'Yellow']
-        issue.create_comment(settings['comments']['successful_move'].format(author=issue_author, move=action[1]))
-        issue.edit(state='closed', labels=issue_labels)
+        # Perform move
+        plays, valid_moves, finished = Conn.move(move, issue_author)
+        if finished == 1:
+            issue_labels = 'Red' if RED == plays else 'Yellow'
+            won = 'Red won' if RED == plays else 'Yellow won'
+            issue.create_comment(settings['comments']['game_over'].format(outcome=won,
+                                                                          num_moves=Conn.rounds,
+                                                                          num_players=len(Conn.player),
+                                                                          players=Conn.player))
+            issue.edit(state='closed', labels=issue_labels)
+        elif finished == 2:
+            issue_labels = 'Red' if RED == plays else 'Yellow'
+            issue.create_comment(settings['comments']['no_space'].format(num_moves=Conn.rounds,
+                                                                          num_players=len(Conn.player),
+                                                                          players=Conn.player))
+            issue.edit(state='closed', labels=issue_labels)
+        else:
+            issue_labels = 'Red' if RED == plays else 'Yellow'
+            issue.create_comment(settings['comments']['successful_move'].format(author=issue_author, move=action[1]))
+            issue.edit(state='closed', labels=issue_labels)
 
         update_last_moves(str(action[1]) + ': ' + issue_author)
         update_top_moves(issue_author)
 
-        # Perform move
-        Conn.move(move)
+
+
 
 
     elif action[0] == Action.UNKNOWN:
