@@ -125,7 +125,7 @@ def main(issue, issue_author, repo_owner):
         if move not in Valid_Moves:
             issue.create_comment(settings['comments']['invalid_move'].format(author=issue_author, move=action[1]))
             issue.edit(state='closed', labels=['Invalid'])
-            return False, 'ERROR: Move is invalid!'
+            return False, f'ERROR: Move "{move}" is invalid!'
 
         # Check if board is valid
         if not Conn.has_space_left():
