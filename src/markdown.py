@@ -92,10 +92,10 @@ def generate_moves_list(board):
 
     #if board.is_game_over():
     #    return "**GAME IS OVER!** " + create_link("Click here", issue_link) + " to start a new game :D\n"
-
+    Plays = 'Red' if 1 == board.whosturn() else 'Yellow'
     markdown += "|  COLOR  | TO (Just click a link!) |\n"
     markdown += "| :----: | :---------------------- |\n"
-    markdown += "| **" + ['Red' if 1 == board.plays else 'Yellow'] + "** | "
+    markdown += "| **" + Plays + "** | "
     for move in moves:
         markdown += create_issue_link(move)
 
