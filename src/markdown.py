@@ -4,7 +4,6 @@ import os
 import re
 import ast
 
-import chess
 import yaml
 
 with open('data/settings.yaml', 'r') as settings_file:
@@ -125,44 +124,28 @@ def board_to_list(board):
 
 
 def get_image_link(piece):
-    switcher = {
-        "r": "img/black/rook.png",
-        "n": "img/black/knight.png",
-        "b": "img/black/bishop.png",
-        "q": "img/black/queen.png",
-        "k": "img/black/king.png",
-        "p": "img/black/pawn.png",
+    switcher = ['img/blank.png', 'img/red.png','img/yellow.png']
 
-        "R": "img/white/rook.png",
-        "N": "img/white/knight.png",
-        "B": "img/white/bishop.png",
-        "Q": "img/white/queen.png",
-        "K": "img/white/king.png",
-        "P": "img/white/pawn.png",
-
-        ".": "img/blank.png"
-    }
-
-    return switcher.get(piece, "???")
+    return switcher[piece]
 
 
-def board_to_markdown(board):
-    board_list = board_to_list(str(board))
+def board_to_markdown(grid):
+
     markdown = ""
 
     # Write header in Markdown format
-    markdown += "|   | A | B | C | D | E | F | G | H |   |\n"
-    markdown += "|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n"
+    markdown += "|   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   |\n"
+    markdown += "|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n"
 
     # Write board
-    for row in range(1, 9):
-        markdown += "| **" + str(9 - row) + "** | "
-        for elem in board_list[row - 1]:
+    for row in grid:
+        markdown += "|---|"
+        for elem in row:
             markdown += "<img src=\"{}\" width=50px> | ".format(get_image_link(elem))
 
-        markdown += "**" + str(9 - row) + "** |\n"
+        markdown += "|---|\n"
 
     # Write footer in Markdown format
-    markdown += "|   | **A** | **B** | **C** | **D** | **E** | **F** | **G** | **H** |   |\n"
+    markdown += "|   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   |\n"
 
     return markdown
