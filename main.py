@@ -189,7 +189,7 @@ def main(issue, issue_author, repo_owner):
             chess_board=markdown.board_to_markdown(Conn),
             moves_list=markdown.generate_moves_list(Conn),
             turn=('red' if Conn.whosturn()[0] == RED else 'yellow'),
-            last_moves=last_moves,
+            last_moves=markdown.generate_last_moves(),
             top_moves=markdown.generate_top_moves()))
 
     return True, ''

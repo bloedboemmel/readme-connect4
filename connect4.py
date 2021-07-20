@@ -15,6 +15,7 @@ class connect4():
             self.ActiveGame = game['ActiveGame']
             self.valid_moves()
 
+
         except:
             self.create_newgame()
             self.valid = range(len(self.grid))
