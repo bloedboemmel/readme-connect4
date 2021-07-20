@@ -69,7 +69,7 @@ def parse_issue(title):
 
         source = match_obj.group(1)
 
-        return (Action.MOVE, (source).lower())
+        return (Action.MOVE, int(source))
 
     return (Action.UNKNOWN, None)
 
@@ -134,7 +134,7 @@ def main(issue, issue_author, repo_owner):
             return False, 'ERROR: Board is invalid!'
 
 
-        issue_labels = ['Red' if RED == Conn.whosturn() else 'White']
+        issue_labels = ['Red' if RED == Conn.whosturn() else 'Yellow']
         issue.create_comment(settings['comments']['successful_move'].format(author=issue_author, move=action[1]))
         issue.edit(state='closed', labels=issue_labels)
 
