@@ -6,7 +6,7 @@ It's your turn to play! Move a <!-- BEGIN TURN -->yellow<!-- END TURN --> piece.
 <!-- BEGIN CHESS BOARD -->
 |   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   |
 |---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
-|---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
+|---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/yellow.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
 |---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
 |---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
 |---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
@@ -31,7 +31,7 @@ Have you spotted a bug? Something missing? Feel free to open an [issue](https://
 <details>
   <summary>Last 5 moves in this game</summary>
 <!-- BEGIN LAST MOVES -->
-<_io.TextIOWrapper name='data/last_moves.txt' mode='w' encoding='UTF-8'><!-- END LAST MOVES -->
+<!-- END LAST MOVES -->
 </details>
 
 <details>
@@ -40,6 +40,7 @@ Have you spotted a bug? Something missing? Feel free to open an [issue](https://
 
 | Total moves |  User  |
 | :---------: | :----- |
+| 1 | [@bloedboemmel](https://github.com/bloedboemmel) |
 
 <!-- END TOP MOVES -->
 </details>
