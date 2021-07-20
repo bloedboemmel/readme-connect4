@@ -62,15 +62,15 @@ def replace_text_between(original_text, marker, replacement_text):
 
 def parse_issue(title):
     """Parse issue title and return a tuple with (action, <move>)"""
-    if title.lower() == 'chess: start new game':
+    if title.lower() == 'connect4: start new game':
         return (Action.NEW_GAME, None)
 
     if 'chess: move' in title.lower():
-        match_obj = re.match('Chess: Move ([A-H][1-8]) to ([A-H][1-8])', title, re.I)
+        match_obj = re.match('Connect4: Put ([1-8])', title, re.I)
 
         source = match_obj.group(1)
-        dest   = match_obj.group(2)
-        return (Action.MOVE, (source + dest).lower())
+
+        return (Action.MOVE, (source).lower())
 
     return (Action.UNKNOWN, None)
 
@@ -83,7 +83,7 @@ def main(issue, issue_author, repo_owner):
         settings = yaml.load(settings_file, Loader=yaml.FullLoader)
 
     if action[0] == Action.NEW_GAME:
-        if os.path.exists('games/current.pgn') and issue_author != repo_owner:
+        if os.path.exists('games/current.p') and issue_author != repo_owner:
             issue.create_comment(settings['comments']['invalid_new_game'].format(author=issue_author))
             issue.edit(state='closed')
             return False, 'ERROR: A current game is in progress. Only the repo owner can start a new game'
@@ -96,7 +96,7 @@ def main(issue, issue_author, repo_owner):
 
         # Create new game
         game = chess.pgn.Game()
-        game.headers['Event'] = repo_owner + '\'s Online Open Chess Tournament'
+        game.headers['Event'] = repo_owner + '\'s Online Open Connect4 Tournament'
         game.headers['Site'] = 'https://github.com/' + os.environ['GITHUB_REPOSITORY']
         game.headers['Date'] = datetime.now().strftime('%Y.%m.%d')
         game.headers['Round'] = '1'
