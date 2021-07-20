@@ -11,7 +11,7 @@ with open('data/settings.yaml', 'r') as settings_file:
 
 
 def create_link(text, link):
-    return "[" + str(text) + "](" + link + ")"
+    return "[ " + str(text) + " |](" + link + ")"
 
 
 def create_issue_link(source):
@@ -73,7 +73,7 @@ def generate_last_moves():
 
 
 def generate_moves_list(board):
-    moves = board.valid_moves()
+    return ''
     # Create dictionary and fill it
 
 
@@ -90,8 +90,7 @@ def generate_moves_list(board):
     markdown += "|  COLOR  | TO (Just click a link!) |\n"
     markdown += "| :----: | :---------------------- |\n"
     markdown += "| **" + Plays + "** | "
-    for move in moves:
-        markdown += create_issue_link(move)
+
 
     return markdown + " |\n"
 
@@ -115,8 +114,8 @@ def get_image_link(piece):
     return switcher[piece]
 
 
-def board_to_markdown(grid):
-
+def board_to_markdown(board):
+    grid = board.grid
     markdown = ""
 
     # Write header in Markdown format
@@ -132,7 +131,11 @@ def board_to_markdown(grid):
         markdown += "|---|\n"
 
     # Write footer in Markdown format
-    markdown += "|   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   |\n"
+    moves = board.valid_moves()
+    markdown += "|   |"
+    for move in moves:
+        markdown += create_issue_link(move)
+    markdown += "   |\n"
 
     return markdown
 

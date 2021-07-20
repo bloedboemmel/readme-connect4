@@ -164,7 +164,7 @@ def main(issue, issue_author, repo_owner):
     with open('README.md', 'w') as file:
         # Write new board & list of movements
         file.write(readme.format(
-            chess_board=markdown.board_to_markdown(Conn.grid),
+            chess_board=markdown.board_to_markdown(Conn),
             moves_list=markdown.generate_moves_list(Conn),
             turn=('red' if Conn.whosturn() == RED else 'yellow'),
             last_moves=last_moves,
