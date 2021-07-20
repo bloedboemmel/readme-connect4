@@ -136,6 +136,7 @@ def main(issue, issue_author, repo_owner):
         # Perform move
 
         plays, valid_moves, finished = Conn.move(move, issue_author)
+        plays = Conn.whosturn()[0]
         if plays == RED:
             issue_labels = 'Red'
         else:
@@ -187,7 +188,7 @@ def main(issue, issue_author, repo_owner):
         file.write(readme.format(
             chess_board=markdown.board_to_markdown(Conn),
             moves_list=markdown.generate_moves_list(Conn),
-            turn=('red' if Conn.whosturn() == RED else 'yellow'),
+            turn=('red' if Conn.whosturn()[0] == RED else 'yellow'),
             last_moves=last_moves,
             top_moves=markdown.generate_top_moves()))
 
