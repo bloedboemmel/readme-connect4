@@ -5,6 +5,7 @@ from datetime import datetime
 class connect4():
     def __init__(self):
         self.grid, self.is_finished, self.plays = self.load_lastgame()
+        self.valid = range(len(self.grid))
 
     def save_currentgame(self):
         pickle.dump({'grid': self.grid, 'is_finished': self.is_finished, 'plays': self.plays},
@@ -128,15 +129,15 @@ class connect4():
         for row in reversed(self.grid):
             print(row)
 
-        Can_Play = []
+        return self.plays, self.valid_moves()
+
+    def valid_moves(self):
+        valid = []
         for i in range(len(self.grid[0])):
             if self.grid[-1][i] == 0:
-                Can_Play.append(i + 1)
-
-        return self.plays, Can_Play
-
-
-
+                valid.append(i + 1)
+        self.valid = valid
+        return valid
 
 if __name__ == '__main__':
     Conn = connect4()
