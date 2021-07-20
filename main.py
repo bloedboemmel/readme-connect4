@@ -146,7 +146,7 @@ def main(issue, issue_author, repo_owner):
 
 
     elif action[0] == Action.UNKNOWN:
-        issue.create_comment(settings['comments']['unknown_command'].format(author=issue_author))
+        issue.create_comment(settings['comments']['unknown_command'].format(author=issue_author) + f"Command: {action[1]}")
         issue.edit(state='closed', labels=['Invalid'])
         return False, f'ERROR: "{action[1]}" Unknown action'
 
