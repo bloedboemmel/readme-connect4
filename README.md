@@ -1,15 +1,22 @@
 # GitHub README Chess Tournament
 
 This is an open chess tournament where ANYONE can play. That's the fun part.  
-It's your turn to play! Move a <!-- BEGIN TURN -->?<!-- END TURN --> piece.
+It's your turn to play! Move a <!-- BEGIN TURN -->yellow<!-- END TURN --> piece.
 
 <!-- BEGIN CHESS BOARD -->
-(Here goes the chess board)
+|   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   |
+|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
+|---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
+|---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
+|---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
+|---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
+|---|<img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | <img src="img/blank.png" width=50px> | |---|
+|   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   |
 <!-- END CHESS BOARD -->
 
 **It's your turn to move! Choose one from the following table**
 <!-- BEGIN MOVES LIST -->
-(Here goes the list of legal moves)
 <!-- END MOVES LIST -->
 
 Having fun? Ask a friend to do the next move!
@@ -24,13 +31,15 @@ Have you spotted a bug? Something missing? Feel free to open an [issue](https://
 <details>
   <summary>Last 5 moves in this game</summary>
 <!-- BEGIN LAST MOVES -->
-(Here goes the list of the last 5 moves)
-<!-- END LAST MOVES -->
+<_io.TextIOWrapper name='data/last_moves.txt' mode='w' encoding='UTF-8'><!-- END LAST MOVES -->
 </details>
 
 <details>
   <summary>Top 10 most moves across all games</summary>
 <!-- BEGIN TOP MOVES -->
-(Here goes the top 10 most moves)
+
+| Total moves |  User  |
+| :---------: | :----- |
+
 <!-- END TOP MOVES -->
 </details>
