@@ -22,7 +22,7 @@ class connect4():
 
     def save_currentgame(self):
         pickle.dump({'grid': self.grid, 'is_finished': self.is_finished, 'plays': self.plays, 'player': self.player,
-                     'rounds': self.rounds, 'ActiveGame': self.ActiveGame}, open("games/current.p", "w+"))
+                     'rounds': self.rounds, 'ActiveGame': self.ActiveGame}, open("games/current.p", "wb"))
 
     def wongame(self):
 
