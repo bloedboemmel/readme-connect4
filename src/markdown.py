@@ -95,7 +95,7 @@ def generate_moves_list(board):
 
     markdown += "|  COLOR  | TO (Just click a link!) |\n"
     markdown += "| :----: | :---------------------- |\n"
-    markdown += "| **" + ['Red' if 1 == board.whosturn() else 'Yellow'] + "** | "
+    markdown += "| **" + ['Red' if 1 == board.plays else 'Yellow'] + "** | "
     for move in moves:
         markdown += create_issue_link(move)
 
