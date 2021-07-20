@@ -134,9 +134,14 @@ def main(issue, issue_author, repo_owner):
             return False, 'ERROR: Board is invalid!'
 
         # Perform move
+
         plays, valid_moves, finished = Conn.move(move, issue_author)
+        if plays == RED:
+            issue_labels = 'Red'
+        else:
+            issue_labels = 'Yellow'
         if finished == 1:
-            issue_labels = 'Red' if RED == plays else 'Yellow'
+
             won = 'Red won' if RED == plays else 'Yellow won'
             issue.create_comment(settings['comments']['game_over'].format(outcome=won,
                                                                           num_moves=Conn.rounds,
@@ -144,13 +149,13 @@ def main(issue, issue_author, repo_owner):
                                                                           players=Conn.player))
             issue.edit(state='closed', labels=issue_labels)
         elif finished == 2:
-            issue_labels = 'Red' if RED == plays else 'Yellow'
+
             issue.create_comment(settings['comments']['no_space'].format(num_moves=Conn.rounds,
                                                                           num_players=len(Conn.player),
                                                                           players=Conn.player))
             issue.edit(state='closed', labels=issue_labels)
         else:
-            issue_labels = 'Red' if RED == plays else 'Yellow'
+
             issue.create_comment(settings['comments']['successful_move'].format(author=issue_author, move=action[1]))
             issue.edit(state='closed', labels=issue_labels)
 
