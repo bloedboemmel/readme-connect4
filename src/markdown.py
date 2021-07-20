@@ -14,15 +14,15 @@ def create_link(text, link):
     return "[" + text + "](" + link + ")"
 
 
-def create_issue_link(source, dest_list):
+def create_issue_link(source):
     ret = []
 
     issue_link = settings['issues']['link'].format(
         repo=os.environ["GITHUB_REPOSITORY"],
-        params=urlencode(settings['issues']['move'], safe="{}"))
+        params=urlencode('PUT', safe="{}"))
 
-    for dest in sorted(dest_list):
-        ret.append(create_link(dest, issue_link.format(source=source, dest=dest)))
+
+    ret.append(create_link(source, issue_link.format(source)))
 
     return ", ".join(ret)
 
@@ -79,16 +79,10 @@ def generate_last_moves():
 
 
 def generate_moves_list(board):
-    return ''
+    moves = board.legal_moves
     # Create dictionary and fill it
-    moves = list(board.legal_moves)
-    moves_dict = defaultdict(list)
 
-    for move in moves:
-        source = chess.SQUARE_NAMES[move.from_square].upper()
-        dest   = chess.SQUARE_NAMES[move.to_square].upper()
 
-        moves_dict[source].append(dest)
 
     # Write everything in Markdown format
     markdown = ""
@@ -96,19 +90,16 @@ def generate_moves_list(board):
         repo=os.environ["GITHUB_REPOSITORY"],
         params=urlencode(settings['issues']['new_game']))
 
-    if board.is_game_over():
-        return "**GAME IS OVER!** " + create_link("Click here", issue_link) + " to start a new game :D\n"
+    #if board.is_game_over():
+    #    return "**GAME IS OVER!** " + create_link("Click here", issue_link) + " to start a new game :D\n"
 
-    if board.is_check():
-        markdown += "**CHECK!** Choose your move wisely!\n"
-
-    markdown += "|  FROM  | TO (Just click a link!) |\n"
+    markdown += "|  COLOR  | TO (Just click a link!) |\n"
     markdown += "| :----: | :---------------------- |\n"
+    markdown += "| **" + ['Red' if 1 == board.whosturn() else 'Yellow'] + "** | "
+    for move in moves:
+        markdown += create_issue_link(move)
 
-    for source,dest in sorted(moves_dict.items()):
-        markdown += "| **" + source + "** | " + create_issue_link(source, dest) + " |\n"
-
-    return markdown
+    return markdown + " |\n"
 
 
 def board_to_list(board):
@@ -139,7 +130,7 @@ def board_to_markdown(grid):
     markdown += "|---|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|\n"
 
     # Write board
-    for row in grid:
+    for row in reversed(grid):
         markdown += "|---|"
         for elem in row:
             markdown += "<img src=\"{}\" width=50px> | ".format(get_image_link(elem))
@@ -150,3 +141,8 @@ def board_to_markdown(grid):
     markdown += "|   | 1 | 2 | 3 | 4 | 5 | 6 | 7 |   |\n"
 
     return markdown
+
+if __name__ == '__main__':
+    nums = range(9)
+    for move in nums:
+        print(create_issue_link(move))
