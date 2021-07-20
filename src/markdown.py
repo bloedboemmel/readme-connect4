@@ -11,7 +11,7 @@ with open('data/settings.yaml', 'r') as settings_file:
 
 
 def create_link(text, link):
-    return "[ " + str(text) + " |](" + link + ")"
+    return " [" + str(text) + "](" + link + ") |"
 
 
 def create_issue_link(source):
