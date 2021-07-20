@@ -64,7 +64,7 @@ def parse_issue(title):
     if title.lower() == 'connect4: start new game':
         return (Action.NEW_GAME, None)
 
-    if 'chess: move' in title.lower():
+    if 'connect4: put' in title.lower():
         match_obj = re.match('Connect4: Put ([1-8])', title, re.I)
 
         source = match_obj.group(1)
