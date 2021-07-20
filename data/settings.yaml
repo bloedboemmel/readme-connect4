@@ -49,8 +49,8 @@ issues:
 
 markers:
   board:
-    begin: "<!-- BEGIN CHESS BOARD -->\n"
-    end: "<!-- END CHESS BOARD -->\n"
+    begin: "<!-- BEGIN CONNECT4 BOARD -->\n"
+    end: "<!-- END CONNECT4 BOARD -->\n"
   last_moves:
     begin: "<!-- BEGIN LAST MOVES -->\n"
     end: "<!-- END LAST MOVES -->\n"

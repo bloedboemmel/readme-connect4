@@ -10,8 +10,7 @@ import yaml
 from github import Github
 
 import src.markdown as markdown
-import src.selftest as selftest
-import src.mockGithub as mockGithub
+
 
 RED = 1
 YELLOW  = 2
