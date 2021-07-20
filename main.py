@@ -71,7 +71,7 @@ def parse_issue(title):
 
         return (Action.MOVE, int(source))
 
-    return (Action.UNKNOWN, None)
+    return (Action.UNKNOWN, title)
 
 
 def main(issue, issue_author, repo_owner):
@@ -148,7 +148,7 @@ def main(issue, issue_author, repo_owner):
     elif action[0] == Action.UNKNOWN:
         issue.create_comment(settings['comments']['unknown_command'].format(author=issue_author))
         issue.edit(state='closed', labels=['Invalid'])
-        return False, 'ERROR: Unknown action'
+        return False, f'ERROR: "{action[1]}" Unknown action'
 
 
 
