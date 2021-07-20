@@ -7,7 +7,7 @@ from enum import Enum
 from datetime import datetime
 from connect4 import connect4
 import yaml
-from github import Github
+#from github import Github
 
 import src.markdown as markdown
 import src.selftest as selftest
@@ -133,6 +133,7 @@ def main(issue, issue_author, repo_owner):
             return False, 'ERROR: Board is invalid!'
 
 
+        issue_labels = ['Red' if RED == Conn.whosturn() else 'White']
         issue.create_comment(settings['comments']['successful_move'].format(author=issue_author, move=action[1]))
         issue.edit(state='closed', labels=issue_labels)
 
