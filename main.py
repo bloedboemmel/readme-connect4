@@ -7,7 +7,7 @@ from enum import Enum
 from datetime import datetime
 from connect4 import connect4
 import yaml
-#from github import Github
+from github import Github
 
 import src.markdown as markdown
 import src.selftest as selftest
