@@ -138,12 +138,12 @@ def main(issue, issue_author, repo_owner):
         plays, valid_moves, finished = Conn.move(move, issue_author)
         plays = Conn.whosturn()[0]
         if plays == RED:
-            issue_labels = 'Red'
+            issue_labels = ['Red']
         else:
-            issue_labels = 'Yellow'
+            issue_labels = ['Yellow']
         if finished == 1:
 
-            won = 'Red won' if RED == plays else 'Yellow won'
+            won = ['Red won' if RED == plays else 'Yellow won']
             issue.create_comment(settings['comments']['game_over'].format(outcome=won,
                                                                           num_moves=Conn.rounds,
                                                                           num_players=len(Conn.player),
