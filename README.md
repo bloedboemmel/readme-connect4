@@ -25,11 +25,7 @@ Maybe you already figured out, that this game is very much like [the README-Ches
 Have you spotted a bug? Something missing? Feel free to open an [issue](https://github.com/bloedboemmel/readme-connect4) and I will try to fix it as soon as possible :D
 
 
-<details>
-  <summary>"But bloedboemmel," I hear you ask,  "there's such a mess of unused code-snippets. When will you tidy it up?"</summary>
-    <img src="img/michael.jpg">
-    I will do it tomorrow!
-</details>
+
 <details>
   <summary>Last 5 moves in this game</summary>
 <!-- BEGIN LAST MOVES -->
@@ -45,4 +41,11 @@ Have you spotted a bug? Something missing? Feel free to open an [issue](https://
 | 27 |  [@bloedboemmel](https://github.com/bloedboemmel) | |
 
 <!-- END TOP MOVES -->
+</details>
+
+
+<details>
+  <summary>"But bloedboemmel," I hear you ask,  "there's such a mess of unused code-snippets. When will you tidy it up?"</summary>
+    <img src="img/michael.jpg">
+    I will do it tomorrow!
 </details>
