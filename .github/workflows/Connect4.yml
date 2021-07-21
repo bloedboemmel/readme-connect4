@@ -29,8 +29,9 @@ jobs:
       # Use pip to install the dependencies and then run the script
       - name: Play connect4
         run: |
+          pip install coverage
           pip install -r requirements.txt
-          python main.py
+          coverage run main.py
 
       # Create new commit with the changed files and push it to GitHub
       - name: Commit and push changes
