@@ -48,11 +48,12 @@ class connect4:
     def iswonornot(self):
         for row in range(len(self.grid)):
             for col in range(len(self.grid[0])):
-                if self.grid[row][col] == self.whosTurn:
-                    if self.recur_checker(self.grid, SOUTH, row + 1, col, self.whosTurn, 3) or \
-                            self.recur_checker(self.grid, EAST, row, col + 1, self.whosTurn, 3) or \
-                            self.recur_checker(self.grid, SOUTHEAST, row + 1, col + 1, self.whosTurn, 3) or \
-                            self.recur_checker(self.grid, SOUTHWEST, row + 1, col - 1, self.whosTurn, 3):
+                if self.grid[row][col] is not 0:
+                    color = self.grid[row][col]
+                    if self.recur_checker(self.grid, SOUTH, row + 1, col, color, 3) or \
+                            self.recur_checker(self.grid, EAST, row, col + 1, color, 3) or \
+                            self.recur_checker(self.grid, SOUTHEAST, row + 1, col + 1, color, 3) or \
+                            self.recur_checker(self.grid, SOUTHWEST, row + 1, col - 1, color, 3):
                         return True
 
         return False
@@ -119,3 +120,12 @@ class connect4:
                 valid.append(i + 1)
         self.valid = valid
         return valid
+
+
+if __name__ == '__main__':
+    Conn = connect4()
+    Conn.grid[2][0] = 1
+    Conn.grid[3][1] = 1
+    Conn.grid[4][2] = 1
+    Conn.grid[5][3] = 1
+    Conn.move(2, "@boerni")
