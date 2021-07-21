@@ -32,7 +32,7 @@ jobs:
           pip install coverage
           pip install -r requirements.txt
           coverage run main.py
-
+          coverage html -d coverage_html
       # Create new commit with the changed files and push it to GitHub
       - name: Commit and push changes
         run: |
