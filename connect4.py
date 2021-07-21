@@ -22,6 +22,10 @@ class connect4:
             self.create_newgame()
             self.valid = range(len(self.grid))
 
+    def is_game_over(self):
+        if os.path.exists("games/current.p"):
+            return False
+        return True
     def save_currentgame(self):
         pickle.dump({'grid': self.grid, 'plays': self.whosTurn, 'player': self.player,
                      'rounds': self.rounds}, open("games/current.p", "wb"))
@@ -86,7 +90,7 @@ class connect4:
     def move(self, x, curr_player):
         x -= 1
         if (x >= len(self.grid[0])) | (x < 0):
-            return self.whosturn()
+            return self.whosTurn, self.valid_moves(), 4
 
         for row in self.grid:
             if row[x] == 0:
