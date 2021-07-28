@@ -1,0 +1,4 @@
+settings:
+  disabled_events:
+    - "issues"
+  commit_msg: "☕ During a coffee-break my humble bot updated my activity"
