@@ -1,8 +1,1 @@
-3: @valenosa
-3: @lulunac27a
-6: @Hezhexi2002
-7: @Carol42
-4: @antjacquemin
-7: @bloedboemmel
-5: @bloedboemmel
-Start game: @bloedboemmel
+Start game: @valenosa
